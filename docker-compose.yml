@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  zenphoto:
+    build: .
+    restart: always
+    ports:
+    - 0.0.0.0:8077:80
+    links:
+    - mysql:mysql
+
+  mysql:
+    image: mariadb:10.3
+    restart: always
+    environment:
+      MYSQL_DATABASE: zenphoto
+      MYSQL_USER: zenphoto
+      MYSQL_PASSWORD: some-password
+      MYSQL_ROOT_PASSWORD: change-this-too
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - 127.0.0.1:4789:3306
+
+volumes:
+  db-data:
