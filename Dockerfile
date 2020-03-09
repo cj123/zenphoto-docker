@@ -22,8 +22,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install curl \
     && docker-php-ext-install tidy \
     && docker-php-ext-install pdo_mysql \
-    && docker-php-ext-install mysqli
+    && docker-php-ext-install mysqli \
+    && docker-php-ext-install gettext
 RUN curl -o zenphoto.zip -L $ZENPHOTO_URL && unzip zenphoto.zip -d /tmp/ && mv /tmp/zenphoto-$ZENPHOTO_VERSION/* /var/www/html/ 
 
-RUN ls /var/www/html
 RUN chown -R www-data:www-data /var/www/html
